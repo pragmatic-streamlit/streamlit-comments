@@ -1,1 +1,1 @@
-recursive-include streamlit_template/frontend/dist *
+recursive-include streamlit_comments/frontend/dist *

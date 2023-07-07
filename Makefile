@@ -1,2 +1,2 @@
 build:
-	cd streamlit_template/frontend && npm run build
+	cd streamlit_comments/frontend && npm run build

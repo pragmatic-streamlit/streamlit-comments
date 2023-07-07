@@ -1,8 +1,8 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='streamlit-template',
-    version='0.0.1',
+    name='streamlit-comments',
+    version='0.0.2',
     packages=find_packages(),
     include_package_data=True,
     install_requires=['streamlit'],
