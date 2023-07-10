@@ -6,8 +6,8 @@ from typing import Optional, Union, Dict, List
 from dataclasses import dataclass, field
 
 
-_DEVELOP_MODE = os.getenv('DEVELOP_MODE')
-# _DEVELOP_MODE = True
+# _DEVELOP_MODE = os.getenv('DEVELOP_MODE')
+_DEVELOP_MODE = True
 
 if _DEVELOP_MODE:
     _component_func = components.declare_component(
@@ -54,6 +54,7 @@ def st_comments(
     commentData: List[CommentDataProps] = [],
     allowDelete: bool = False,
     allowEdit: bool = False,
+    customNoComment: str = None,
     key = None,
 ):
     user_info = {
@@ -88,6 +89,7 @@ def st_comments(
         "commentData": commentData,
         "allowDelete": allowDelete,
         "allowEdit": allowEdit,
+        "customNoComment": customNoComment,
     }
     
     current_params = {}
@@ -153,6 +155,7 @@ if _DEVELOP_MODE:
         titleStyle={ "display": "none" },
         hrStyle={ "display": "none" },
         commentData=[],
+        customNoComment=" ",
     )
     st.write(event)
     
