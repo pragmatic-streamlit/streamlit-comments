@@ -1,6 +1,7 @@
 import React from "react";
 import { withStreamlitConnection, StreamlitComponentBase, ComponentProps, Streamlit } from 'streamlit-component-lib';
 import { CommentSection, CommentSectionProps, CommentDataProps } from 'dp-react-comments-section'
+import { v4 as uuidv4 } from 'uuid'
 import 'dp-react-comments-section/dist/index.css'
 
 export enum StreamlitEventType {
@@ -11,6 +12,7 @@ export enum StreamlitEventType {
 }
 
 export interface StreamlitEvent {
+  id: string;
   type: StreamlitEventType;
   data: {
     comment: CommentDataProps;
@@ -34,6 +36,7 @@ class CustomStreamlitComponent extends StreamlitComponentBase<IState> {
 
   handleCommentSubmit = (comment: CommentDataProps, all: CommentDataProps[]) => {
     noticeStreamlit({
+      id: uuidv4(),
       type: StreamlitEventType.COMMENT_SUBMIT,
       data: { comment, all }
     })
@@ -41,6 +44,7 @@ class CustomStreamlitComponent extends StreamlitComponentBase<IState> {
 
   handleCommentDelete = (comment: CommentDataProps, all: CommentDataProps[]) => {
     noticeStreamlit({
+      id: uuidv4(),
       type: StreamlitEventType.COMMENT_DELETE,
       data: { comment, all }
     })
@@ -48,6 +52,7 @@ class CustomStreamlitComponent extends StreamlitComponentBase<IState> {
 
   handleCommentEdit = (comment: CommentDataProps, all: CommentDataProps[]) => {
     noticeStreamlit({
+      id: uuidv4(),
       type: StreamlitEventType.COMMENT_EDIT,
       data: { comment, all }
     })
@@ -55,6 +60,7 @@ class CustomStreamlitComponent extends StreamlitComponentBase<IState> {
 
   handleCommentReply = (comment: CommentDataProps, all: CommentDataProps[]) => {
     noticeStreamlit({
+      id: uuidv4(),
       type: StreamlitEventType.COMMENT_REPLY,
       data: { comment, all }
     })

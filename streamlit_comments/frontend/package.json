@@ -14,7 +14,8 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "reset.css": "^2.0.2",
-    "streamlit-component-lib": "^1.4.0"
+    "streamlit-component-lib": "^1.4.0",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@types/react": "^17.0.2",

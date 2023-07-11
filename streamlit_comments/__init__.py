@@ -4,10 +4,10 @@ from datetime import datetime
 import streamlit.components.v1 as components
 from typing import Optional, Union, Dict, List
 from dataclasses import dataclass, field
+import streamlit as st
 
-
-# _DEVELOP_MODE = os.getenv('DEVELOP_MODE')
-_DEVELOP_MODE = True
+_DEVELOP_MODE = os.getenv('DEVELOP_MODE')
+# _DEVELOP_MODE = True
 
 if _DEVELOP_MODE:
     _component_func = components.declare_component(
@@ -98,11 +98,24 @@ def st_comments(
             continue
         current_params[item] = params[item]
 
-    return _component_func(key=key, **current_params)
+    event = _component_func(key=key, **current_params)
+    
+    STREAMLIT_FRONTEND_MESSAGE_ID_KEY = "streamlit_frontend_message_id"
+
+    if st.session_state.get(STREAMLIT_FRONTEND_MESSAGE_ID_KEY, None) is None:
+        st.session_state[STREAMLIT_FRONTEND_MESSAGE_ID_KEY] = {}
+
+    if event:
+        id = event.get("id", None)
+        if not id:
+            return None
+        if id in st.session_state[STREAMLIT_FRONTEND_MESSAGE_ID_KEY]:
+            return None
+        st.session_state[STREAMLIT_FRONTEND_MESSAGE_ID_KEY][id] = True
+    return event
 
 
 if _DEVELOP_MODE:
-    import streamlit as st
     
     test_data = [
         {
@@ -157,6 +170,7 @@ if _DEVELOP_MODE:
         commentData=[],
         customNoComment=" ",
     )
+    print(111, event)
     st.write(event)
     
     
