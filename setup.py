@@ -6,7 +6,7 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     install_requires=['streamlit'],
-    url='https://github.com/pragmatic-streamlit/streamlit-phone-number',
+    url='https://github.com/pragmatic-streamlit/streamlit-comments',
     long_description=open('README.md').read(),
     long_description_content_type="text/markdown",
     classifiers=[

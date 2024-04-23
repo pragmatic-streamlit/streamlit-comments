@@ -1,8 +1,17 @@
 import React from "react";
-import { withStreamlitConnection, StreamlitComponentBase, ComponentProps, Streamlit } from 'streamlit-component-lib';
-import { CommentSection, CommentSectionProps, CommentDataProps } from 'dp-react-comments-section'
-import { v4 as uuidv4 } from 'uuid'
-import 'dp-react-comments-section/dist/index.css'
+import {
+  withStreamlitConnection,
+  StreamlitComponentBase,
+  ComponentProps,
+  Streamlit,
+} from "streamlit-component-lib";
+import {
+  CommentSection,
+  CommentSectionProps,
+  CommentDataProps,
+} from "dp-react-comments-section";
+import { v4 as uuidv4 } from "uuid";
+import "dp-react-comments-section/dist/index.css";
 
 export enum StreamlitEventType {
   COMMENT_SUBMIT = "COMMENT_SUBMIT",
@@ -20,7 +29,8 @@ export interface StreamlitEvent {
   };
 }
 
-export const noticeStreamlit = (event: StreamlitEvent) => Streamlit.setComponentValue(event)
+export const noticeStreamlit = (event: StreamlitEvent) =>
+  Streamlit.setComponentValue(event);
 
 interface IProps extends CommentSectionProps {}
 
@@ -34,37 +44,43 @@ class CustomStreamlitComponent extends StreamlitComponentBase<IState> {
     this.args = props.args;
   }
 
-  handleCommentSubmit = (comment: CommentDataProps, all: CommentDataProps[]) => {
+  handleCommentSubmit = (
+    comment: CommentDataProps,
+    all: CommentDataProps[]
+  ) => {
     noticeStreamlit({
       id: uuidv4(),
       type: StreamlitEventType.COMMENT_SUBMIT,
-      data: { comment, all }
-    })
-  }
+      data: { comment, all },
+    });
+  };
 
-  handleCommentDelete = (comment: CommentDataProps, all: CommentDataProps[]) => {
+  handleCommentDelete = (
+    comment: CommentDataProps,
+    all: CommentDataProps[]
+  ) => {
     noticeStreamlit({
       id: uuidv4(),
       type: StreamlitEventType.COMMENT_DELETE,
-      data: { comment, all }
-    })
-  }
+      data: { comment, all },
+    });
+  };
 
   handleCommentEdit = (comment: CommentDataProps, all: CommentDataProps[]) => {
     noticeStreamlit({
       id: uuidv4(),
       type: StreamlitEventType.COMMENT_EDIT,
-      data: { comment, all }
-    })
-  }
+      data: { comment, all },
+    });
+  };
 
   handleCommentReply = (comment: CommentDataProps, all: CommentDataProps[]) => {
     noticeStreamlit({
       id: uuidv4(),
       type: StreamlitEventType.COMMENT_REPLY,
-      data: { comment, all }
-    })
-  }
+      data: { comment, all },
+    });
+  };
 
   public render(): React.ReactNode {
     return (
@@ -75,7 +91,7 @@ class CustomStreamlitComponent extends StreamlitComponentBase<IState> {
         onSubmitAction={this.handleCommentSubmit}
         {...this.args}
       />
-    )
+    );
   }
 }
 
